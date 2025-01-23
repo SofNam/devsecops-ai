@@ -1,0 +1,19 @@
+{
+    "confidence": 0.75,
+    "maxFindings": 100,
+    "modelSettings": {
+      "threshold": 0.8,
+      "batchSize": 32,
+      "enableCache": true
+    },
+    "categories": [
+      "Injection",
+      "Authentication",
+      "Authorization",
+      "Cryptography",
+      "Configuration",
+      "FileSystem",
+      "Network",
+      "Memory"
+    ]
+}
