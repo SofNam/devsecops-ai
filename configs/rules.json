@@ -1,0 +1,31 @@
+{
+    "rules": [
+      {
+        "id": "RULE-001",
+        "name": "SQL Injection Detection",
+        "pattern": "(?i)(SELECT|INSERT|UPDATE|DELETE).*\\$\\{",
+        "severity": "HIGH",
+        "category": "Injection",
+        "keywords": ["sql", "database", "query"],
+        "description": "Potential SQL injection vulnerability detected"
+      },
+      {
+        "id": "RULE-002",
+        "name": "Hardcoded Credentials",
+        "pattern": "(?i)(password|secret|key)\\s*=\\s*['\"]\\w+['\"]",
+        "severity": "CRITICAL",
+        "category": "Security",
+        "keywords": ["credentials", "password", "secret"],
+        "description": "Hardcoded credentials detected in code"
+      },
+      {
+        "id": "RULE-003",
+        "name": "Insecure File Operations",
+        "pattern": "(?i)os\\.Open\\(.*\\)",
+        "severity": "MEDIUM",
+        "category": "FileSystem",
+        "keywords": ["file", "path", "traversal"],
+        "description": "Potential file operation without proper validation"
+      }
+    ]
+}

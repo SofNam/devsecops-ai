@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./target:/scan:ro  # Mount target directory as read-only
+    security_opt:
+      - no-new-privileges:true  # Prevent privilege escalation
+    read_only: true  # Make container filesystem read-only
+    tmpfs:
+      - /tmp  # Temporary filesystem for required writes
+    cap_drop:
+      - ALL  # Drop all capabilities
+    cap_add:
+      - NET_BIND_SERVICE  # Add only required capabilities
+    healthcheck:
+      test: ["CMD", "/scanner", "--health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    environment:
+      - SCANNER_LOG_LEVEL=info
+      - SCANNER_OUTPUT_FORMAT=json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
